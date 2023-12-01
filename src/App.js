@@ -5,6 +5,8 @@ import Home from "./components/layouts/home/Home";
 import Contact from "./components/layouts/contact/Contact";
 import About from "./components/layouts/about/About";
 import Product from "./components/layouts/product/Product";
+import Footer from "./components/layouts/footer/Footer";
+import Notfound from "./components/layouts/404/Notfound";
 
 function App() {
   return (
@@ -15,8 +17,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Product />} />
+          <Route path="/product" element={<Product />} />
+          <Route path="*" element={<Notfound/>}/>
         </Routes>
+        <Footer />
       </Router>
     </>
   );

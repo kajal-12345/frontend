@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useState } from "react";
 import sidebar from "./sidebar.module.css";
 import logo from "../../../assets/images/logo.png";
 import { Link } from "react-router-dom";
@@ -8,25 +8,28 @@ import about from "../../../assets/icons/about.svg";
 import contact from "../../../assets/icons/contact.svg";
 import close from "../../../assets/icons/close.svg";
 import headerstyle from "./headerStyle.module.css";
+import { useRecoilState } from "recoil";
+import sidebarState from "../../../utils/showSidebarAtom";
 // Sidebar.js
 
-const Sidebar = ({ onclick }) => {
-    
+const Sidebar = ({className}) => {
+  const [showSideBar, setshowSideBar] = useRecoilState(sidebarState);
+  // console.log("isopen", showSideBar);
   return (
     <div
-      className={`${sidebar.sidebar} ${headerstyle.showSidebar} ${sidebar.open}`}
+      className={`${sidebar.sidebar} ${headerstyle.showSidebar} ${className}`}
     >
-      <div
-        style={{ display: "flex", backgroundColor: "rgb(50, 99, 96)" }}
-      >
+      <div style={{ display: "flex", backgroundColor: "rgba(247, 100, 8,0.5)" }}>
         <img src={logo} alt="logo" className={sidebar.logo}></img>
         <img
           src={close}
           alt="close"
           width={"32px"}
           height={"32px"}
-          
-          onClick={onclick}
+          onClick={() => {
+            setshowSideBar(!showSideBar);
+            // console.log("close", showSideBar);
+          }}
         />
       </div>
 

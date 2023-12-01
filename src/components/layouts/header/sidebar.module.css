@@ -7,49 +7,38 @@
 @import url("https://fonts.googleapis.com/css2?family=Ephesis&family=Josefin+Sans:wght@300&family=Playfair+Display:ital@1&family=Sofia&display=swap");
 .sidebar {
   height: 100%;
-  /* width: 270px; */
+  width: 270px;
   position: fixed;
   top: 0;
   left: 0;
   background-color: #111;
   color: #ffffff;
+  /* overflow-x: hidden; */ 
+  /* transform: translateX(-100%); */
 }
 .sidebarclosed {
   /* Move the sidebar off-screen when it's closed */
   transform: translateX(-100%);
-  transition: transform 250ms ease-in-out;
+  transition: transform 500ms ease-in-out;
 }
 @keyframes open {
-    from {
-      
-      width: 0px;
-    }
-  
-    to {
-     
-      width: 280px;
-    }
-}
-@keyframes close {
-    from {
-      /* margin-left: 100%; */
-      width: 270px;
-    }
-  
-    to {
-      /* margin-left: 0%; */
-      width: 0%;
-    }
+  from {
+    /* transform: translateX(-100%); */
+    width: 0%;
   }
-.open{
-    animation-name: open;
-  animation-duration: 800ms;
+
+  to {
+    width: 270px;
+    /* transform: translateX(100%); */
+  }
+}
+
+.open {
+  animation-name: open;
+  animation-duration: 500ms;
   animation-iteration-count: 1;
 }
-.close{
-    animation-name: close;
-    animation-duration: 1s;
-}
+
 .logo {
   width: 100%;
   height: 97px;
@@ -61,6 +50,9 @@
   font-family: "Playfair Display", serif;
   font-size: 1.3rem;
   padding-left: 8px;
+}
+.link:hover{
+  color:gray
 }
 ul > li {
   margin-bottom: 30px;

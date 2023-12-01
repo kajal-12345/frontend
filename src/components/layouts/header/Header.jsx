@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import headerstyle from "./headerStyle.module.css";
 import logo from "../../../assets/images/logo.png";
 import search from "../../../assets/icons/search.svg";
@@ -7,8 +7,13 @@ import profile from "../../../assets/icons/profile.svg";
 import options from "../../../assets/icons/options.svg";
 import { Link } from "react-router-dom";
 import SideBar from "./SideBar";
+import { useRecoilState } from "recoil";
+import sidebarState from "../../../utils/showSidebarAtom";
+import sidebar from "./sidebar.module.css";
 const Header = () => {
-  const [showSideBar, setShowSideBar] = useState(false);
+  const [showSideBar, setShowSideBar] = useRecoilState(sidebarState);
+  // console.log("header", showSideBar);
+
   const handleClick = (e) => {
     e.stopPropagation();
 
@@ -26,21 +31,25 @@ const Header = () => {
     <div className={headerstyle.navContainer}>
       <div className={headerstyle.displayOptions}>
         {setStyle()}
-        <img src={options} alt="options"  onClick={handleClick} />
+        <img src={options} alt="options" onClick={handleClick} />
       </div>
 
-      {showSideBar && <SideBar onclick={handleClick} />}
+      {showSideBar ? (
+        <SideBar className={sidebar.open} />
+      ) : (
+        <SideBar className={sidebar.sidebarclosed} />
+      )}
 
       <div>
         <img
           src={logo}
           alt="logo"
           className={headerstyle.logo}
-          style={style}
+          // style={style}
         ></img>
       </div>
 
-      <div className={headerstyle.nav}>
+      <div className={headerstyle.nav}> 
         <Link to="/" className={headerstyle.link}>
           Home
         </Link>
